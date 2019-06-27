@@ -86,3 +86,45 @@ function cpln_initialize_exclusions(){
     register_setting('cpln_exclusions', 'cpln_exclusions');
 }
 add_action('admin_init', 'cpln_initialize_exclusions');
+
+
+/******************************/
+/***     OTHER SETTINGS     ***/
+/******************************/
+function cpln_initialize_other_settings(){
+	if( !get_option( 'cpln_other_settings' ) ) {
+        add_option( 'cpln_other_settings' );
+    }
+	
+	add_settings_section(
+        'cpln_other_setting_section',
+        'Leave Notice Other Settings',
+        'cpln_other_settings_desc',
+        'cpln_other_settings'
+    );
+	
+	add_settings_field( 
+        'cpln_redirect_timer_bool',
+        'Enable Redirect Timer',
+        'cpln_redirect_timer_bool_output',
+        'cpln_other_settings',
+        'cpln_other_setting_section',
+        array(
+            ''
+        )
+	);
+	add_settings_field( 
+        'cpln_redirect_time',
+        'Time Until Auto-Redirect',
+        'cpln_redirect_time_output',
+        'cpln_other_settings',
+        'cpln_other_setting_section',
+        array(
+            ''
+        )
+	);
+	
+	// register the fields with WordPress
+    register_setting('cpln_other_settings', 'cpln_other_settings');
+}
+add_action('admin_init', 'cpln_initialize_other_settings');

@@ -1,8 +1,8 @@
 === Plugin Name ===
 Contributors: XAce90
-Tags: external links, pop up disclaimer, exit warning, site abandonment notice, leaving notification
+Tags: external links, pop up disclaimer, exit warning, site abandonment notice, leaving notification, exit popup
 Requires at least: 4.0
-Tested up to: 5.0.3
+Tested up to: 5.2.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -62,6 +62,9 @@ There could be several reasons. Be sure to first try clearing your browser and s
 If the problem persists, please contact me either through the WordPress Support forms or on Twitter at @SirCaseyJames. 
 
 == Changelog ==
+
+= 1.2 =
+* Added a feature that allows you to automatically redirect users to the URL after a certain time passes
 
 = 1.1 =
 * Now fully responsive

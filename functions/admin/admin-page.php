@@ -3,6 +3,7 @@
 require_once( 'content.php' );
 require_once( 'styling.php' );
 require_once( 'exclusions.php' );
+require_once( 'other.php' );
 
 /*
   Create Admin Menu and Page
@@ -25,7 +26,7 @@ function cpln_admin_page() { ?>
             <h2 class="nav-tab-wrapper">
                 <a href="?page=cpleavenotice&tab=content_options" 
                 	class="nav-tab <?php echo $active_tab == 'content_options' ? 'nav-tab-active' : ''; ?>" >
-                    Content Options
+                    Content
                 </a>
                 <!--
                 <a href="?page=cpleavenotice&tab=styling_options"
@@ -36,6 +37,10 @@ function cpln_admin_page() { ?>
                 <a href="?page=cpleavenotice&tab=exclusions" 
                 	class="nav-tab <?php echo $active_tab == 'exclusions' ? 'nav-tab-active' : ''; ?>" >
                     Exclusions
+				</a>
+				<a href="?page=cpleavenotice&tab=other_options"
+				   class="nav-tab <?php echo $active_tab == 'other_options' ? 'nav-tab-active' : ''; ?>">
+					Other Options
 				</a>
             </h2>
             
@@ -52,7 +57,10 @@ function cpln_admin_page() { ?>
                     } else if ( $active_tab == 'exclusions' ) {
                         settings_fields( 'cpln_exclusions' );
 						do_settings_sections( 'cpln_exclusions' );
-                    }
+                    } else if ( $active_tab == 'other_options' ) {
+						settings_fields( 'cpln_other_settings' );
+						do_settings_sections( 'cpln_other_settings' );
+					}
                 ?>
                 <?php submit_button(); ?>
 		</form>
