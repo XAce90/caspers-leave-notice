@@ -1,9 +1,31 @@
-// CLOSE POP UP WHEN OPENING THE NEW PAGE
-function handle_relocate(){
-	console.log('hello world');
-}
-
 jQuery(document).ready(function($){
+	function cpln_close_notice(){
+		$('.cpln-leavenotice').removeClass('cpln-active');
+	}
+	function cpln_set_displayed_url(url){
+		$('.cpln-redirect-link').html('<a target="_blank" class="cpln-redirect-url" href="'+url+'">'+url+'</a>');
+	}
+	function cpln_open_notice(){
+		$('.cpln-leavenotice').addClass('cpln-active');
+	}
+	function cpln_auto_redirect(el, url){
+		//get start time
+		var start = parseInt(el.dataset.startTime);
+		var timeLeft = start;		
+		
+		//set countdown, redirect, close window, and reset html
+		var countdown = setInterval(function(){
+			timeLeft--;
+			el.innerHTML = timeLeft;
+			if(timeLeft < 1){ 
+				window.open(url, '_blank'); 
+				clearInterval(countdown);
+				cpln_close_notice();
+				el.innerHTML = start;
+			}
+		}, 1000);
+	}
+	
 	//get exclusion URLs, convert to regex, convert to array
 	var cplnExclusions = [];
 	$('li.cpln-exclude').each(function(){
@@ -12,13 +34,14 @@ jQuery(document).ready(function($){
 		//convert common URL features to regex-ready strings
 		cplnExclude = cplnExclude.replace(/\//g,'\\/');
 		//cplnExclude = cplnExclude.replace(/\:/g,'\\:');
+		cplnExclude = cplnExclude.replace(/\-/g,'\\-');		
 
 		//tag on the exclusions to the array
 		cplnExclusions.push( cplnExclude );
 
 	});
 	
-	var cplnExList = '!obj.href.match(/^mailto\:/) && !obj.href.match(/^tel\:/) && !obj.href.match(/^javascript/) && (obj.hostname !== location.hostname)'
+	var cplnExList = '!obj.href.match(/^mailto\:/) && !obj.href.match(/^tel\:/) && !obj.href.match(/^javascript/) && (obj.hostname !== location.hostname)';
 	//checks to see if any exclusions have been entered, if so, add them to the exclusion list
 	if(cplnExclusions.length > 0 && cplnExclusions[0] !== '') {
 		for(var i = 0; i < cplnExclusions.length; i++){
@@ -35,12 +58,16 @@ jQuery(document).ready(function($){
 	$('a:external').addClass('external');
 	$('.no-notice').removeClass('external'); //add class 'no-popup' on any link you want to exclude from external warning
 	$('.no-notice a').removeClass('external'); //allows applying class to menu navigation
-	$(document.body).on('click', 'a.external', function(e){
-		if($(this).attr('href')){
-			$('.cpln-redirect-link').html('<a target="_blank" class="cpln-redirect-url" href="'+$(this).attr('href')+'">'+$(this).attr('href')+'</a>');
-			$('.cpln-leavenotice').addClass('cpln-active');
-		}
+	$('a.external').click(function(e){
 		e.preventDefault();
+		if(e.target.hasAttribute('href')){
+			var url = e.target.getAttribute('href');
+			cpln_set_displayed_url(url);
+			cpln_open_notice();
+			if(document.querySelector('.cpln-redirect-box__time')){
+				cpln_auto_redirect(document.querySelector('.cpln-redirect-box__time'), url);
+			}
+		}
 	});
 	
 	// CLOSE POP UP WHEN OPENING THE NEW PAGE
@@ -49,9 +76,6 @@ jQuery(document).ready(function($){
 	});
 	
 	// CANCEL BUTTON AND ESC TO CLOSE POPUP
-	function cpln_close_notice(){
-		$('.cpln-leavenotice').removeClass('cpln-active');
-	}
 	$('.cpln-cancel').click(function(e){
 		cpln_close_notice();
 		e.preventDefault(); 
