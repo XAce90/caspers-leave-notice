@@ -38,6 +38,15 @@ function cpln_insert_markup(){
 	$options = get_option('cpln_content_settings');
 	$titleCopy = $options['cpln_title_content'];
 	$bodyCopy = $options['cpln_body_content']; 
+	
+	/**
+	 * If Auto-Redirect enabled, do two things:
+	 * 1) redirect to the intended URL after set amount of time
+	 * 2) include a message and countdown on the popup showing how much time is left
+	 */
+	$timerOptions = get_option('cpln_other_settings');
+	$timerEnabled = isset($timerOptions['cpln_redirect_timer_bool']) && $timerOptions['cpln_redirect_timer_bool'];
+//	var_dump($timerOptions);
 	?>
     
 	<div class="cpln-leavenotice">
@@ -49,7 +58,18 @@ function cpln_insert_markup(){
                     	<h2><?php echo $titleCopy ?></h2>
                         <p><?php echo $bodyCopy ?></p>
                         <div class="cpln-redirect-box">
-                        	You will be redirected to<div class="cpln-redirect-link"></div>
+							<div class="cpln-redirect-box__content">You will be redirected to<div class="cpln-redirect-link"></div></div>
+							<?php //If auto-redirect set true, display countdown
+								if($timerEnabled){
+									$timer = $timerOptions['cpln_redirect_time'];
+									$html = '<div class="cpln-redirect-box__countdown">in ';
+									$html .= '<span class="cpln-redirect-box__time" data-start-time="'.$timer.'">';
+									$html .= $timer;
+									$html .= '</span>';
+									$html .= ' seconds...</div>';
+									echo $html;
+								}
+							?>
                         </div>
                         <p>Click the link above to continue or <a class="cpln-cancel" href="#">CANCEL</a>
 					</div>

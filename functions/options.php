@@ -98,7 +98,7 @@ function cpln_initialize_other_settings(){
 	
 	add_settings_section(
         'cpln_other_setting_section',
-        'Leave Notice Other Settings',
+        'Other Leave Notice Settings',
         'cpln_other_settings_desc',
         'cpln_other_settings'
     );
