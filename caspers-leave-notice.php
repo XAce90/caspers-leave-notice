@@ -3,7 +3,7 @@
  Plugin Name: Casper's Leave Notice
  Plugin URI: https://wordpress.org/plugins/caspers-leave-notice/
  Description: Warns your users when they are leaving your site. You can edit the content of the warning, as well as add exceptions.
- Version: 1.2
+ Version: 1.2.1
  Author: Casey James Perno
  Author URI: https://www.caseyjamesperno.com
  License: GPL2

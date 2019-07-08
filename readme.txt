@@ -64,6 +64,11 @@ If the problem persists, please contact me either through the WordPress Support 
 
 == Changelog ==
 
+= 1.2.1 =
+* Fixed bug where the auto-redirect was still redirecting even when a user hit cancel
+* Fixed bug where auto-redirect time setting was not saving
+* The redirect timer is now off by default
+
 = 1.2 =
 * Added a feature that allows you to automatically redirect users to the URL after a certain time passes
 

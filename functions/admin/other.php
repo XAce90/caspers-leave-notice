@@ -21,7 +21,7 @@ function cpln_redirect_timer_bool_output($args) {
 
 function cpln_redirect_time_output($args) {
 	$options = get_option('cpln_other_settings');
-	$value = isset($options['cpln_redirect_timer']) ? $options['cpln_redirect_timer'] : 3;
+	$value = isset($options['cpln_redirect_time']) ? $options['cpln_redirect_time'] : 3;
 	$html = '<input type="number" id="cpln_redirect_time"';
 	$html .= 'name="cpln_other_settings[cpln_redirect_time]"';
 	$html .= 'style="max-width: 4rem; text-align: right;"';

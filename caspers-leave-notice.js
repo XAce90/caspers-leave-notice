@@ -1,4 +1,5 @@
 jQuery(document).ready(function($){
+	var countdown;
 	function cpln_close_notice(){
 		$('.cpln-leavenotice').removeClass('cpln-active');
 	}
@@ -11,10 +12,11 @@ jQuery(document).ready(function($){
 	function cpln_auto_redirect(el, url){
 		//get start time
 		var start = parseInt(el.dataset.startTime);
-		var timeLeft = start;		
+		var timeLeft = start;
+		el.innerHTML = start;	//when countdown was previously closed... this resets the UI timer
 		
 		//set countdown, redirect, close window, and reset html
-		var countdown = setInterval(function(){
+		countdown = setInterval(function(){
 			timeLeft--;
 			el.innerHTML = timeLeft;
 			if(timeLeft < 1){ 
@@ -24,6 +26,11 @@ jQuery(document).ready(function($){
 				el.innerHTML = start;
 			}
 		}, 1000);
+	}
+	function cpln_stop_redirect(){
+		if(countdown){
+			clearInterval(countdown);
+		}
 	}
 	
 	//get exclusion URLs, convert to regex, convert to array
@@ -79,10 +86,12 @@ jQuery(document).ready(function($){
 	$('.cpln-cancel').click(function(e){
 		cpln_close_notice();
 		e.preventDefault(); 
+		cpln_stop_redirect();
 	});
 	$(document).keyup(function(e){
 		if(e.keyCode === 27) {
 			cpln_close_notice();
+			cpln_stop_redirect();
 		}
 	});
 });
