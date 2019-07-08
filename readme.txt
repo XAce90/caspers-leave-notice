@@ -67,6 +67,7 @@ If the problem persists, please contact me either through the WordPress Support 
 = 1.2.1 =
 * Fixed bug where the auto-redirect was still redirecting even when a user hit cancel
 * Fixed bug where auto-redirect time setting was not saving
+* Deleting the plugin now also cleans the db of the new option introduced in v1.2
 * The redirect timer is now off by default
 
 = 1.2 =

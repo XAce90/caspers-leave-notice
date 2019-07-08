@@ -7,4 +7,5 @@ if ( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  
 delete_option( 'cpln_content_settings' );
 delete_option( 'cpln_exclusions' );
+delete_option( 'cpln_other_settings' );
 ?>
