@@ -62,18 +62,17 @@ jQuery(document).ready(function($){
 	};
 	
 	// Add 'external' CSS class to all external links
-	$('a:external').addClass('external');
+	$('a[href]:external').addClass('external');
 	$('.no-notice').removeClass('external'); //add class 'no-popup' on any link you want to exclude from external warning
 	$('.no-notice a').removeClass('external'); //allows applying class to menu navigation
 	$('a.external').click(function(e){
 		e.preventDefault();
-		if(e.target.hasAttribute('href')){
-			var url = e.target.getAttribute('href');
-			cpln_set_displayed_url(url);
-			cpln_open_notice();
-			if(document.querySelector('.cpln-redirect-box__time')){
-				cpln_auto_redirect(document.querySelector('.cpln-redirect-box__time'), url);
-			}
+		//if the element clicked on is NOT the link (i.e. a button with an icon), travel up until you find the element with the href
+		var url = (e.target.hasAttribute('href')) ? e.target.getAttribute('href') : e.target.closest('[href]').getAttribute('href'); 
+		cpln_set_displayed_url(url);
+		cpln_open_notice();
+		if(document.querySelector('.cpln-redirect-box__time')){
+			cpln_auto_redirect(document.querySelector('.cpln-redirect-box__time'), url);
 		}
 	});
 	

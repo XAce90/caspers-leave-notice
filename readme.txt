@@ -64,6 +64,9 @@ If the problem persists, please contact me either through the WordPress Support 
 
 == Changelog ==
 
+= 1.2.2 =
+* Fixed issue where the plugin would not work when elements were nested inside of the anchor element
+
 = 1.2.1 =
 * Fixed bug where the auto-redirect was still redirecting even when a user hit cancel
 * Fixed bug where auto-redirect time setting was not saving
