@@ -68,7 +68,7 @@ jQuery(document).ready(function($){
 	$('a.external').click(function(e){
 		e.preventDefault();
 		//if the element clicked on is NOT the link (i.e. a button with an icon), travel up until you find the element with the href
-		var url = (e.target.hasAttribute('href')) ? e.target.getAttribute('href') : e.target.closest('[href]').getAttribute('href'); 
+		var url = (e.target.hasAttribute('href')) ? e.target.getAttribute('href') : $(this).closest('[href]').attr('href'); 
 		cpln_set_displayed_url(url);
 		cpln_open_notice();
 		if(document.querySelector('.cpln-redirect-box__time')){
