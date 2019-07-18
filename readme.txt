@@ -54,15 +54,28 @@ It's that simple.
 
 = Is there any way to change the style of the pop up? =
 
-We are looking into adding styling and/or themes. If you have any design ideas, please reach out at @SirCaseyJames on Twitter, or leave a message here on the WordPress Support forums. In the meantime, you can add your own custom styling through custom CSS.
+We are looking into adding styling and/or themes. If you have any design ideas, please reach out at @SirCaseyJames on Twitter, or leave a message here on the WordPress Support forums. In the meantime, you can add your own custom styling through CSS.
 
 = I added a domain to the exclusion list; why is the pop up still showing up? =
 
-There could be several reasons. Be sure to first try clearing your browser and site cache. If it still does not take affect, please check what you entered into the text area. Domains *must* be separated by commas (i.e. 'domain.com, test.com'). You must also use the most minimal amount of the domain to have the widest effect. For example, if you type in **www.domain.com**, any where that links to **domain.com** will *not* be excluded. Conversely, however, if you just type in **domain.com**, **www.domain.com** *will* be excluded. As such, it's best to use as little as possible in the exclusion list.
+There could be several reasons. Be sure to first try clearing your browser and site cache. If it still does not take affect, please check what you entered into the text area. Domains *must* be separated by commas (i.e. 'domain.com, test.com'). You must also use the most minimal amount of the domain to have the widest effect. For example, if you type in **www.domain.com**, anywhere that links to **domain.com** will *not* be excluded. Conversely, however, if you just type in **domain.com**, **www.domain.com** *will* be excluded. As such, it's best to use as little as possible in the exclusion list.
 
-If the problem persists, please contact me either through the WordPress Support forms or on Twitter at @SirCaseyJames. 
+If the problem persists, please submit an issue through the WordPress support forms. 
+
+= Why is the pop up working on some links, but not others? =
+
+While rare, some themes may have markup that is incompatible with Casper's Leave Notice. I'm happy to remedy this -- just open up a support ticket with a link to your site and I'll release a patch.
+
+Another possibility is a theme or plugin *unbinding* JavaScript events on certain elements. The JavaScript event is required for the plugin to work. To figure out if this is the case, try switching themes or disabling other plugins. Once you find the source of the conflict, open up a support ticket and I may be able to find a fix. 
+
+= Are there any known conflicts? =
+
+The only know conflict today is with **Max Mega Menu**, but there is an easy solution. This plugin by default unbinds JavaScript events from link elements, but they give you an option to turn this off. Just go to Mega Menu -> General Settings and find the option called Unbind JavaScript Events. Set this to no.
 
 == Changelog ==
+
+= 1.2.3 =
+* Fixed issue where the popup wasn't working in Internet Explorer
 
 = 1.2.2 =
 * Fixed issue where the plugin would not work when elements were nested inside of the anchor element
